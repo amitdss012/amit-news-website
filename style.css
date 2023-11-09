@@ -1,236 +1,160 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@500&display=swap");
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
 
-:root {
-    --primary-text-color: #183b56;
-    --secondary-text-color: #577592;
-    --accent-color: #2294ed;
-    --accent-color-dark: #1d69a3;
+.container{
+  height: 100%;
+  width: 100%;
 }
 
-body {
-    font-family: "Poppins", sans-serif;
-    color: var(--primary-text-color);
+
+/* navBar */
+
+.navBar {
+  background-color: lightblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  height: 10vh;
 }
 
-p {
-    font-family: "Roboto", sans-serif;
-    color: var(--secondary-text-color);
-    line-height: 1.4rem;
-}
-
-a {
-    font-family: sans-serif;
-    text-decoration: none;
+.logo {
+  cursor: pointer;
 }
 
 ul {
-    list-style: none;
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  cursor: pointer;
 }
 
-.flex {
-    display: flex;
+.HamborgerMenu {
+  cursor: pointer;
+  display: none;
+}
+
+.NewsTopics {
+  position: relative;
+}
+
+.aajao {
+  left: -130px;
+}
+
+@media only screen and (max-width: 550px) {
+  .NewsTopicsUl li {
+    font-size: 13px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  ul {
+    padding: 10px;
+    flex-direction: column;
     align-items: center;
+    position: absolute;
+    top: 5vh;
+    left: 280px;
+    background-color: gray;
+    width: 70vw;
+    height: 80vh;
+    transition: all 0.4s ease;
+  }
+
+  .HamborgerMenu {
+    display: block;
+  }
 }
 
-.container {
-    max-width: 1180px;
-    margin-inline: auto;
-    overflow: hidden;
+.searchDiv {
+  height: 30vh;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlUA5VbtVud_PHAktsBUszWcGZXvbm3jLAPA&usqp=CAU");
+  background-size: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-nav {
-    bbackground-color: #D9AFD9;
-    background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);   
-    box-shadow: 0 0 4px #bbd0e2;
-    position: fixed;
-    top: 0;
-    z-index: 99;
-    left: 0;
-    right: 0;
+.searchDiv input {
+  border-radius: 10px;
+  height: 40px;
+  width: 60vw;
+  border: none;
 }
 
-.main-nav {
-    justify-content: space-between;
-    padding-block: 8px;
-}
-
-.company-logo {
+.searchDiv i{
+    margin-left: 5px;
+    height: 40px;
+    width: 100px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 25px;
-}
-
-.nav-links ul {
-    gap: 16px;
-}
-
-.nav-links{
-    width: 100%;
-}
-
-.company-logo{
-    width: 100%;
-}
-
-.hover-link {
+    background-color: antiquewhite;
     cursor: pointer;
 }
 
-.hover-link:hover {
-    color: var(--secondary-text-color);
+
+/* News container */
+
+.newsContainer{
+  margin-top: 10px;
+  padding: 10px 10px;
+  width: 100%;
+  height: 100%;
+  background-color: yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.hover-link:active {
-    color: red;
+.newsCard{
+  margin-top: 10px;
+  max-width: 350px;
+  max-height: 470px;
+  min-height: 470px;
+  background-color: whitesmoke;
+  box-shadow: 0 29px 52px rgba(0,0,0,0.40), 0 25px 16px rgba(0,0,0,0.20);
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-.nav-item.active {
-    color: var(--accent-color);
+.newsImage img{
+  height: 200px;
+  width: 100%;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
-.search-bar {
-    height: 32px;
-    gap: 8px;
+.newsDetail{
+  padding: 10px;
 }
 
-.news-input {
-    width: 200px;
-    height: 100%;
-    padding-inline: 12px;
-    border-radius: 4px;
-    border: 2px solid #bbd0e2;
-    font-family: "Roboto", sans-serif;
+.newsDetail h1{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
 }
 
-.search-button {
-    background-color: var(--accent-color);
-    color: white;
-    padding: 8px 24px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: "Roboto", sans-serif;
+.newsDetail span {
+  font-size: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
-
-.search-button:hover {
-    background-color: var(--accent-color-dark);
+.newsDetail p{
+  margin-top: 10px;
 }
-
-main {
-    padding-block: 20px;
-    margin-top: 80px;
-}
-
-.cards-container {
-    background-color: #FFDEE9;
-    background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    row-gap: 20px;
-    align-items: start;
-}
-
-.card {
-    width: 360px;
-    min-height: 400px;
-    box-shadow: 0 0 4px #d4ecff;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: #fff;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.card:hover {
-    box-shadow: 1px 1px 8px #d4ecff;
-    background-color: #f9fdff;
-    transform: translateY(-2px);
-}
-
-.card-header img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
-
-.card-content {
-    padding: 12px;
-}
-
-.news-source {
-    margin-block: 12px;
-}
-
-
-@media only screen and (max-width: 600px) {
-    .main-nav{
-        padding: 10px;
-        flex-direction: column;
-    }
-
-    .company-logo .nav-links{
-        /* display: flex; */
-        justify-content: flex-start;
-    }
-    .search-bar{
-        width: 100%;
-    }
-
-    .news-input{
-        width: 90%;
-    }
-    .company-logo{
-        margin: 0px 10px;
-    }
-    .nav-links{
-        margin-top: 10px;
-    }
-    .search-bar{
-        margin-top: 10px;
-    }
-
-    .cards-container{
-        margin-top: 30px;
-    }
-
-    ul{
-        font-size: 20px;
-    }
-  }
-
-  @media only screen and (max-width: 380px) {
-    .card{
-        width: 340px;
-    }
-  }
-
-
-  @media only screen and (max-width: 350px) {
-    .card{
-        width: 320px;
-    }
-  }
-
-
-  @media only screen and (max-width: 330px) {
-    .card{
-        width: 290px;
-    }
-  }
-
-
-  @media only screen and (max-width: 300px) {
-    .card{
-        width: 270px;
-    }
-  }
-
-  @media only screen and (max-width: 280px) {
-    .card{
-        width: 250px;
-    }
-  }
