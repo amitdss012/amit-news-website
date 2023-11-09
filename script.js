@@ -1,69 +1,58 @@
-const API_KEY = "3099295e6cdc4ab8955a8dd44f1b8994";
-const url = "https://newsapi.org/v2/everything?q=";
+const Menu = document.querySelector(".HamborgerMenu");
+const NewsTopics = document.querySelector(".NewsTopicsUl");
+const Newsdata = document.querySelector(".newsContainer");
+const SeachIcon = document.getElementById("SearchICon");
+const inputData = document.getElementById("inputData");
 
-window.addEventListener("load", () => fetchNews("India"));
-
-function reload() {
-    window.location.reload();
-}
-
-async function fetchNews(query) {
-    const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
-    const data = await res.json();
-    bindData(data.articles);
-}
-
-function bindData(articles) {
-    const cardsContainer = document.getElementById("cards-container");
-    const newsCardTemplate = document.getElementById("template-news-card");
-
-    cardsContainer.innerHTML = "";
-
-    articles.forEach((article) => {
-        if (!article.urlToImage) return;
-        const cardClone = newsCardTemplate.content.cloneNode(true);
-        fillDataInCard(cardClone, article);
-        cardsContainer.appendChild(cardClone);
-    });
-}
-
-function fillDataInCard(cardClone, article) {
-    const newsImg = cardClone.querySelector("#news-img");
-    const newsTitle = cardClone.querySelector("#news-title");
-    const newsSource = cardClone.querySelector("#news-source");
-    const newsDesc = cardClone.querySelector("#news-desc");
-
-    newsImg.src = article.urlToImage;
-    newsTitle.innerHTML = article.title;
-    newsDesc.innerHTML = article.description;
-
-    const date = new Date(article.publishedAt).toLocaleString("en-US", {
-        timeZone: "Asia/Jakarta",
-    });
-
-    newsSource.innerHTML = `${article.source.name} · ${date}`;
-
-    cardClone.firstElementChild.addEventListener("click", () => {
-        window.open(article.url, "_blank");
-    });
-}
-
-let curSelectedNav = null;
-function onNavItemClick(id) {
-    fetchNews(id);
-    const navItem = document.getElementById(id);
-    curSelectedNav?.classList.remove("active");
-    curSelectedNav = navItem;
-    curSelectedNav.classList.add("active");
-}
-
-const searchButton = document.getElementById("search-button");
-const searchText = document.getElementById("search-text");
-
-searchButton.addEventListener("click", () => {
-    const query = searchText.value;
-    if (!query) return;
-    fetchNews(query);
-    curSelectedNav?.classList.remove("active");
-    curSelectedNav = null;
+Menu.addEventListener("click", () => {
+  NewsTopics.classList.toggle("aajao");
 });
+
+let API = "https://newsapi.org/v2/everything?q=";
+let API_KEY = "3099295e6cdc4ab8955a8dd44f1b8994";
+
+window.addEventListener("load", () => {
+  GetData("india");
+});
+
+const GetData = async (query) => {
+  let Response = await fetch(`${API}${query}&apiKey=${API_KEY}`)
+  let Data = await Response.json();
+  // console.log(Data.articles)
+
+  Newsdata.innerHTML = "";
+  Data.articles.forEach(function (NewsArticle) {
+    let Divs = document.createElement("div");
+    Divs.classList.add("newsCard");
+    Newsdata.appendChild(Divs);
+    if(!NewsArticle.urlToImage) return
+    Divs.innerHTML = `
+    <div class="newsImage">
+        <img src=${NewsArticle.urlToImage} alt="Data.articles.">
+    </div>
+
+    <div class="newsDetail">
+        <h1>${NewsArticle.title}</h1>
+        <span>${NewsArticle.source}</span>
+        <p>${NewsArticle.description}</p>
+    </div>
+    `;
+
+    Divs.addEventListener('click' , () => {
+        window.open(NewsArticle.url)
+    })
+  });
+
+};
+
+SeachIcon.addEventListener("click", () => {
+  let inputText = inputData.value;
+  if(inputText === "") return;
+  GetData(inputText);
+});
+
+
+function NavClick(navName){
+    GetData(navName)
+}
+
